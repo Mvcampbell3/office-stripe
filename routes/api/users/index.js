@@ -1,11 +1,7 @@
 const router = require('express').Router();
-const db = require('../../../models')
-
+const user_controller = require('../../../controllers/user_controller');
 router.route('/')
-  .get((req, res) => {
-    db.User.find()
-      .then(users => res.json(users))
-      .catch(err => res.json(err))
-  })
+  .get(user_controller.getUsers)
+  .post(user_controller.createUser)
 
 module.exports = router;
