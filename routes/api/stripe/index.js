@@ -4,6 +4,8 @@ router.get('/', (req, res) => {
   res.json({ ok: true, place: req.originalUrl })
 })
 
-router.get('/customers', stripe_controller.getCustomers)
+router.route('/customers')
+  .get(stripe_controller.getCustomers)
+  .post(stripe_controller.createCustomer)
 
 module.exports = router;
