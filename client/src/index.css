@@ -1,9 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Lakki+Reddy&family=Ubuntu&display=swap');
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-body, html {
+body,
+html {
   height: 100%;
+}
+
+.ofsp {
+  font-family: 'Lakki Reddy', cursive;
+  color: #ac110e;
+}
+
+.norm {
+  font-family: 'Ubuntu', sans-serif;
 }
