@@ -1,4 +1,6 @@
 const db = require('../models');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 module.exports = {
   getUsers: (req, res) => {
     db.User.find()
@@ -11,13 +13,20 @@ module.exports = {
       })
   },
   createUser: (req, res) => {
-    const { email, username } = req.body;
-    db.User.create({ email, username })
-      .then(user => {
-        res.status(201).json(user);
+    const { email, username, password } = req.body;
+    bcrypt.hash(password, 15)
+      .then(hash => {
+        db.User.create({ email, username, password: hash })
+          .then(user => {
+            res.status(201).json(user);
+          })
+          .catch(err => {
+            res.status(422).json(err)
+          })
       })
       .catch(err => {
-        res.status(422).json(err)
+        console.log(err);
+        res.json(500).json(err)
       })
   }
 }
