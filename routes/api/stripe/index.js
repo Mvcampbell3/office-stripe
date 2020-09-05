@@ -8,4 +8,7 @@ router.route('/customers')
   .get(stripe_controller.getCustomers)
   .post(stripe_controller.createCustomer)
 
+router.route('/products')
+  .post(stripe_controller.createProduct)
+
 module.exports = router;

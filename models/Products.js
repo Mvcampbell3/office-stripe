@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const StripePriceSchema = new Schema({ price_id: String, amount: Number })
+
 const ProductSchema = new Schema({
   name: {
     type: String,
@@ -17,6 +19,14 @@ const ProductSchema = new Schema({
   quantity: {
     type: Number,
     default: 0
+  },
+  prod_id: {
+    type: String,
+    required: true
+  },
+  price_ids: {
+    type: [StripePriceSchema],
+    default: undefined
   }
 })
 
