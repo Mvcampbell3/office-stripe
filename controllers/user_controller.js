@@ -28,5 +28,32 @@ module.exports = {
         console.log(err);
         res.json(500).json(err)
       })
+  },
+  loginUser: (req, res) => {
+    const { email, password } = req.body;
+    db.User.findOne({ email })
+      .then(user => {
+        if (user) {
+          bcrypt.compare(password, user.password)
+            .then(match => {
+              console.log(match);
+              if (match) {
+                return jwtSign(req, res, user);
+              }
+              res.status(200).json(match);
+            })
+            .catch(err => {
+              console.log(err);
+              res.staus.json(500)
+            })
+        } else {
+          res.status(404).json({ user: false })
+        }
+      })
   }
+}
+
+function jwtSign(req, res, user) {
+  const token = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_KEY, { expiresIn: '1m' });
+  res.status(200).json({ loggedIn: true, token, id: user._id });
 }
