@@ -1,13 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import './landing.css'
+import Header from '../../components/Header';
 
 const Landing = (props) => {
   return (
     <div className="container">
-      <h1 className="ofsp">Office Space</h1>
-      <p className="content ofsp">Work Sucks</p>
-      {!props.user ? <h3>Not a user?</h3> : <h3>You are a user!</h3>}
-      <Link to='/new'>new</Link>
+      <Header />
+      <div className="main">
+        <div className="splash">
+          <div className="splash-wrapper">
+            <h2 className="splash-title tech opac-up">Cutting Edge</h2>
+            <p className="splash-sub ofsp opac-up">Office Space Store</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

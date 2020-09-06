@@ -1,0 +1,41 @@
+.main {
+  min-height: calc(100vh - 80px);
+  background-color: #f9f9f9;
+}
+
+.splash {
+  min-height: 60vh;
+  height: 60vh;
+  background-image: url('../../assets/images/officespace-cast-cubicles.jpg');
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-color: #1d2936d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-wrapper {
+  color: white;
+}
+
+.splash-title {
+  font-size: 80px;
+  letter-spacing: 10px;
+  position: relative;
+  left: -15vw;
+  top: -10vh;
+  animation: opac-raise forwards 1s linear;
+  opacity: 0;
+}
+
+.splash-sub {
+  position: relative;
+  text-align: right;
+  right: -10vw;
+  bottom: -10vh;
+  font-size: 30px;
+  opacity: 0;
+  animation: opac-raise forwards .5s .5s linear;
+}
