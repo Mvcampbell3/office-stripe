@@ -54,6 +54,6 @@ module.exports = {
 }
 
 function jwtSign(req, res, user) {
-  const token = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_KEY, { expiresIn: '1m' });
+  const token = jwt.sign({ email: user.email, id: user._id }, process.env.JWT_KEY, { expiresIn: '1d' });
   res.status(200).json({ loggedIn: true, token, id: user._id });
 }

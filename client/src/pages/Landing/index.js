@@ -13,6 +13,8 @@ const Landing = (props) => {
             <p className="splash-sub ofsp opac-up">Office Space Store</p>
           </div>
         </div>
+        <button className="btn" onClick={props.loginUser}>Login</button>
+        <button className="btn" onClick={props.checkAuth}>Check</button>
       </div>
     </div>
   );
