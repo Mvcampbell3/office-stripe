@@ -21,6 +21,23 @@ body, html {
   font-family: 'Roboto', sans-serif;
 }
 
+.btn {
+  padding: 20px;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(.95)
+}
+
 @keyframes opac-raise {
   0% {
     opacity: 0;
