@@ -9,5 +9,5 @@ router.route('/login')
   .post(user_controller.loginUser)
 
 router.route('/check')
-  .get(auth, user_controller.getUsers)
+  .get(auth, user_controller.returnUser)
 module.exports = router;

@@ -50,6 +50,15 @@ module.exports = {
           res.status(404).json({ user: false })
         }
       })
+  },
+  returnUser: (req, res) => {
+    db.User.findById(req.user.id).select('-password')
+      .then(user => {
+        res.status(200).json(user);
+      })
+      .catch(err => {
+        res.status(500).json(err)
+      })
   }
 }
 

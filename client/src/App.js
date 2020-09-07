@@ -9,11 +9,15 @@ import Testing from './pages/Testing';
 
 class App extends Component {
   state = {
-    user: false
+    user: false,
+    id: null,
+    current_cart: []
   }
 
   componentDidMount() {
-    console.log('component mounted')
+    console.log('component mounted');
+    this.checkAuth();
+    // this.loginUser();
   }
 
   loginUser = () => {
@@ -33,10 +37,20 @@ class App extends Component {
     API.checkAuth()
       .then(response => {
         console.log(response);
+        return response.status === 204 ? this.unsetUser() : this.setUser(response.data);
       })
       .catch(err => {
-        console.log(err)
+        this.unsetUser()
       })
+  }
+
+  setUser = (user) => {
+    this.setState({ ...this.state, user: true, id: user._id, current_cart: user.current_cart })
+  }
+
+  unsetUser = () => {
+    this.setState({ ...this.state, user: false, id: null, current_cart: [] })
+
   }
 
   render() {

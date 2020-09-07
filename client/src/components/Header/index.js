@@ -11,9 +11,12 @@ const Header = (props) => {
         <li>
           <i className="fas fa-cart-plus"></i>
         </li>
-        <li>
+        {props.user ? < li >
           <i className="fas fa-user-tie"></i>
-        </li>
+        </li> : <li>
+            <i className="fas fa-sign-in-alt"></i>
+          </li>}
+
       </ul>
     </header>
   );

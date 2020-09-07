@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 const Landing = (props) => {
   return (
     <div className="container">
-      <Header />
+      <Header user={props.user} />
       <div className="main">
         <div className="splash">
           <div className="splash-wrapper">
