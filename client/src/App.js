@@ -37,7 +37,7 @@ class App extends Component {
     API.checkAuth()
       .then(response => {
         console.log(response);
-        return response.status === 204 ? this.unsetUser() : this.setUser(response.data);
+        return response.status === 200 ? this.setUser(response.data) : this.unsetUser();
       })
       .catch(err => {
         this.unsetUser()
