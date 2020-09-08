@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './header.css'
 import logo from '../../assets/images/initech_clear.png';
 
 const Header = (props) => {
   return (
     <header>
-      <img src={logo} alt="Initech logo" className="brand" />
+      <Link to='/'>
+        <img src={logo} alt="Initech logo" className="brand" />
+      </Link>
       <h1 className="header-title tech">Innovation + Technology</h1>
       <ul className="nav">
         <li>

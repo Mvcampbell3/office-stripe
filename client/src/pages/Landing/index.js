@@ -1,16 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './landing.css'
 import Header from '../../components/Header';
 
+
 const Landing = (props) => {
+
   return (
     <div className="container">
       <Header user={props.user} />
-      <div className="main">
+      <div className="main-landing">
         <div className="splash">
           <div className="splash-wrapper">
             <h2 className="splash-title tech opac-up">Welcome to Initech</h2>
-            <button className="btn splash-btn tech">Visit Store</button>
+            <Link to='/store' className="btn splash-btn tech">Visit Store</Link>
           </div>
         </div>
         <section className="message">
@@ -20,7 +23,7 @@ const Landing = (props) => {
           </div>
         </section>
       </div>
-    </div>
+    </div >
   );
 }
 

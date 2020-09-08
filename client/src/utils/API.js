@@ -14,10 +14,19 @@ export default {
   testAPI() {
     return axios.get(`${baseURL}/stripe/customers`)
   },
+
   checkAuth() {
     return axios.get(`${baseURL}/users/check`, { headers: { 'Authorization': createBearer() } })
   },
+
   loginUser(email, password) {
     return axios.post(`${baseURL}/users/login`, { email, password })
+  },
+  getAllProducts() {
+    return axios.get(`${baseURL}/products`);
+  },
+  getTypeProducts(type) {
+    return axios.get(`${baseURL}/products/type/${type}`)
   }
+
 }

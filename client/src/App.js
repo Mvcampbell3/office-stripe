@@ -6,18 +6,22 @@ import './App.css';
 // Pages
 import Landing from './pages/Landing';
 import Testing from './pages/Testing';
+import Store from './pages/Store'
 
 class App extends Component {
   state = {
     user: false,
     id: null,
-    current_cart: []
+    current_cart: [],
+    display_store: 'all',
+    products: [],
+    loading: false
   }
 
   componentDidMount() {
     console.log('component mounted');
     this.checkAuth();
-    // this.loginUser();
+    this.getAllProducts();
   }
 
   loginUser = () => {
@@ -50,15 +54,62 @@ class App extends Component {
 
   unsetUser = () => {
     this.setState({ ...this.state, user: false, id: null, current_cart: [] })
+  }
 
+  setDisplayStore = (display) => {
+    console.log(display);
+    this.setState(prevState => {
+      prevState.display_store = display;
+      return prevState
+    }, () => {
+      display === 'all' ? this.getAllProducts() : this.getTypeProducts(display);
+    });
+  }
+
+  getAllProducts = () => {
+    this.toggleLoading()
+    API.getAllProducts()
+      .then(products => {
+        console.log(products.data);
+        this.setState({ ...this.state, products })
+        this.setState(prevState => {
+          prevState.products = products;
+          prevState.loading = false;
+          return prevState;
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  getTypeProducts = (type) => {
+    this.toggleLoading()
+    API.getTypeProducts(type)
+      .then(products => {
+        console.log(products.data);
+        this.setState(prevState => {
+          prevState.products = products;
+          prevState.loading = false;
+          return prevState;
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  toggleLoading = () => {
+    this.setState({ ...this.state, loading: !this.state.loading })
   }
 
   render() {
     return (
       <Router>
         <Switch>
-          <Route exact path='/' render={props => (<Landing {...props} user={this.state.user} loginUser={this.loginUser} checkAuth={this.checkAuth} />)} />
+          <Route exact path='/' render={props => (<Landing {...props} user={this.state.user} loading={this.state.loading} loginUser={this.loginUser} checkAuth={this.checkAuth} />)} />
           <Route exact path='/new' render={props => (<Testing {...props} user={this.state.user} />)} />
+          <Route exact path='/store' render={props => (<Store {...props} user={this.state.user} products={this.state.products} loading={this.state.loading} display_store={this.state.display_store} setDisplayStore={this.setDisplayStore} />)} />
         </Switch>
       </Router>
     );

@@ -13,6 +13,14 @@ module.exports = {
   getOneProduct: (req, res) => {
 
   },
+  getTypeProduct: (req, res) => {
+    db.Product.find({ type: req.params.type })
+      .then(products => res.status(200).json(products))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      })
+  },
   createProduct: (req, res) => {
     const { name, description, price } = req.body;
     let quantity = 0;

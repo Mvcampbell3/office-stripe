@@ -70,16 +70,18 @@ module.exports = StripeObj = {
 function createProductDB(req, res, product, price_s) {
   const prod_id = product.id;
   const price_obj = { price_id: price_s.id, amount: price_s.unit_amount };
-  const { name, description, price } = req.body;
+  const { name, description, price, type, img_path } = req.body;
   let quantity = 0;
-  if (req.quantity) {
-    quantity = req.quantity;
+  if (req.body.quantity) {
+    quantity = req.body.quantity;
   }
   const save_obj = {
     name,
     description,
+    type,
     price,
     quantity,
+    img_path,
     prod_id,
     price_ids: [price_obj]
   }
