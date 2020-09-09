@@ -8,6 +8,7 @@ import Landing from './pages/Landing';
 import Testing from './pages/Testing';
 import Store from './pages/Store';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
 
 class App extends Component {
   state = {
@@ -24,6 +25,19 @@ class App extends Component {
     this.scrollTop();
     this.checkAuth();
     this.getAllProducts();
+  }
+
+  logout = () => {
+    console.log('logging out user');
+    this.setState(prevState => {
+      prevState.user = false;
+      prevState.id = null;
+      prevState.current_cart = [];
+      return prevState;
+    }, () => {
+      localStorage.removeItem('ofsp-token');
+      window.location = '/'
+    })
   }
 
   loginUser = () => {
@@ -91,10 +105,12 @@ class App extends Component {
     API.getAllProducts()
       .then(products => {
         console.log(products.data);
-        this.setState({ ...this.state, products })
         this.setState(prevState => {
           prevState.products = products.data;
           prevState.loading = false;
+          if (prevState.display_store !== 'all') {
+            prevState.display_store = 'all';
+          }
           return prevState;
         })
       })
@@ -129,8 +145,18 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={props => (<Landing {...props} user={this.state.user} loading={this.state.loading} loginUser={this.loginUser} checkAuth={this.checkAuth} />)} />
           <Route exact path='/new' render={props => (<Testing {...props} user={this.state.user} />)} />
-          <Route exact path='/store' render={props => (<Store {...props} user={this.state.user} products={this.state.products} loading={this.state.loading} display_store={this.state.display_store} setDisplayStore={this.setDisplayStore} />)} />
+          <Route exact path='/store' render={props => (
+            <Store {...props}
+              user={this.state.user}
+              products={this.state.products}
+              loading={this.state.loading}
+              display_store={this.state.display_store}
+              setDisplayStore={this.setDisplayStore}
+              getAllProducts={this.getAllProducts}
+            />
+          )} />
           <Route exact path='/login' render={props => (<Login {...props} user={this.state.user} handleLogin={this.handleLogin} />)} />
+          <Route exact path='/profile' render={props => (<Profile {...props} user={this.state.user} logout={this.logout} />)} />
         </Switch>
       </Router>
     );

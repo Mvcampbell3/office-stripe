@@ -4,13 +4,18 @@ import Header from '../../components/Header';
 import Product from '../../components/Product';
 
 const Store = (props) => {
+
+  const { getAllProducts } = props;
+
   useEffect(
     () => {
       window.scrollTo(0, 0)
-    }, []
-  )
+      getAllProducts();
+    }, [getAllProducts]
+  );
+
   return (
-    <div className="container">
+    <div className="container-store">
       <Header user={props.user} />
       <div className="main-store">
         <div className="store-nav">

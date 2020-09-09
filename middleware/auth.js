@@ -8,7 +8,7 @@ module.exports = function(req, res, next) {
     req.user = { id: auth.id };
     next();
   } catch (error) {
-    console.log(error)
+    console.log('web token failed verification');
     res.status(204).json({ user: false })
   }
 }

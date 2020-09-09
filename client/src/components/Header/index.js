@@ -15,7 +15,7 @@ const Header = (props) => {
           <i className="fas fa-cart-plus"></i>
         </li>
         {props.user ? < li >
-          <i className="fas fa-user-tie"></i>
+          <Link className='header-link' to='/profile'><i className="fas fa-user-tie"></i></Link>
         </li> : <li>
             <Link to='/login' className='header-link'><i className="fas fa-sign-in-alt"></i></Link>
           </li>}

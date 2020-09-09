@@ -7,13 +7,13 @@ import Header from '../../components/Header';
 const Landing = (props) => {
 
   return (
-    <div className="container">
+    <div className="container-landing">
       <Header user={props.user} />
       <div className="main-landing">
         <div className="splash">
           <div className="splash-wrapper">
             <h2 className="splash-title tech opac-up">Welcome to Initech</h2>
-            <Link to='/store' className="btn splash-btn tech">Visit Store</Link>
+            <Link to='/store' className="my-button splash-btn tech">Visit Store</Link>
           </div>
         </div>
         <section className="message">

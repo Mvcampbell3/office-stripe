@@ -6,7 +6,7 @@ const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   return (
-    <div className="login-container">
+    <div className="container-login">
       <Header user={props.user} />
       <div className="main-login">
         <form className='login-form' onSubmit={(e) => {

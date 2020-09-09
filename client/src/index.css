@@ -25,7 +25,12 @@ a {
   text-decoration: none;
 }
 
-.btn {
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.my-button {
   padding: 20px;
   background-color: white;
   border: none;
@@ -34,7 +39,7 @@ a {
   cursor: pointer;
 }
 
-.btn:focus {
+.my-button:focus {
   outline: none;
 }
 
