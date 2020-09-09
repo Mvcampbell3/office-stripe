@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import './store.css'
 import Header from '../../components/Header';
+import Product from '../../components/Product';
 
 const Store = (props) => {
+  useEffect(
+    () => {
+      window.scrollTo(0, 0)
+    }, []
+  )
   return (
     <div className="container">
       <Header user={props.user} />
@@ -15,7 +21,12 @@ const Store = (props) => {
           <div className={props.display_store === 'cars' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("cars")}>Cars</div>
           <div className={props.display_store === 'games' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("games")}>Games</div>
         </div>
-        {props.loading ? <div className="loading">Loading</div> : <div className='products-holder'></div>}
+        {props.loading ? <div className="loading">Loading</div> :
+          <div className='products-holder'>
+            {props.products.map((product, i) => {
+              return <Product product={product} key={i} />
+            })}
+          </div>}
       </div>
 
     </div>

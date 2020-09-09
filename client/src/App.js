@@ -20,6 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     console.log('component mounted');
+    this.scrollTop();
     this.checkAuth();
     this.getAllProducts();
   }
@@ -35,6 +36,10 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       })
+  }
+
+  scrollTop = () => {
+    window.scrollTo(0, 0);
   }
 
   checkAuth = () => {
@@ -73,7 +78,7 @@ class App extends Component {
         console.log(products.data);
         this.setState({ ...this.state, products })
         this.setState(prevState => {
-          prevState.products = products;
+          prevState.products = products.data;
           prevState.loading = false;
           return prevState;
         })
@@ -89,7 +94,7 @@ class App extends Component {
       .then(products => {
         console.log(products.data);
         this.setState(prevState => {
-          prevState.products = products;
+          prevState.products = products.data;
           prevState.loading = false;
           return prevState;
         })
