@@ -139,6 +139,10 @@ class App extends Component {
     this.setState({ ...this.state, loading: !this.state.loading })
   }
 
+  addItemToCart = (id, price, quantity) => {
+
+  }
+
   render() {
     return (
       <Router>

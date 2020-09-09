@@ -4,8 +4,8 @@
   color: #003975;
   position: relative;
   padding: 2em;
-  min-height: 90vh;
-  z-index: 1;
+  min-height: 75vh;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@
 .product {
   background-color: #003975;
   position: relative;
-  z-index: -2;
+  /* z-index: -2; */
   box-shadow: 0px 3px 3px 3px rgba(51, 51, 51, 0.205);
   border-radius: 5px;
 }
@@ -35,17 +35,17 @@
   position: absolute;
   border-radius: 5px;
   z-index: -1;
-  min-height: calc(90vh + 1px);
-  height: calc(90vh + 1px);
+  min-height: calc(75vh + 1px);
+  height: calc(75vh + 1px);
   width: 100%;
-  background-color: #f8f8f8;
+  background-color: #fff;
   top: 0px;
   left: 0;
   clip-path: polygon(20% 0, 100% 0, 100% 50%, 100% 100%, 20% 100%, 0% 50%);
 }
 
 .product-img {
-  width: 20vw;
+  width: 15vw;
   height: auto;
   min-width: 100px;
   min-height: 100px;
@@ -73,4 +73,61 @@
 
 .product-info {
   max-width: 65vw;
+}
+
+.input-product {
+  display: grid;
+  grid-template-columns: auto 100px 50px;
+  gap: 0;
+  width: fit-content;
+  align-content: center;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.my-input-button {
+  border: 0;
+  background-color: #003975;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.my-input-button:focus {
+  outline: 0;
+}
+
+.my-input-button:active {
+  transform: scale(0.95);
+  background-color: #004792;
+}
+
+.my-label {
+  background-color: #003975;
+  color: white;
+  height: 100%;
+  padding: 0px 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-number-input {
+  height: 100%;
+  padding: 16px;
+  border: 0;
+  border-top: 1px #aaa solid;
+  border-bottom: 1px #aaa solid;
+  width: 100px;
+  text-align: center;
+  display: block;
+  font-size: 20px;
+}
+
+.my-number-input:focus {
+  outline: 0;
 }
