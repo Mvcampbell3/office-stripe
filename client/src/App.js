@@ -6,7 +6,8 @@ import './App.css';
 // Pages
 import Landing from './pages/Landing';
 import Testing from './pages/Testing';
-import Store from './pages/Store'
+import Store from './pages/Store';
+import Login from './pages/Login';
 
 class App extends Component {
   state = {
@@ -31,6 +32,20 @@ class App extends Component {
         console.log(response.data);
         if (response.data.token) {
           localStorage.setItem('ofsp-token', JSON.stringify(response.data.token))
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  handleLogin = (email, password) => {
+    API.loginUser(email, password)
+      .then(response => {
+        console.log(response.data);
+        if (response.data.token) {
+          localStorage.setItem('ofsp-token', JSON.stringify(response.data.token));
+          this.setState({ ...this.state, user: true, id: response.data.id })
         }
       })
       .catch(err => {
@@ -115,6 +130,7 @@ class App extends Component {
           <Route exact path='/' render={props => (<Landing {...props} user={this.state.user} loading={this.state.loading} loginUser={this.loginUser} checkAuth={this.checkAuth} />)} />
           <Route exact path='/new' render={props => (<Testing {...props} user={this.state.user} />)} />
           <Route exact path='/store' render={props => (<Store {...props} user={this.state.user} products={this.state.products} loading={this.state.loading} display_store={this.state.display_store} setDisplayStore={this.setDisplayStore} />)} />
+          <Route exact path='/login' render={props => (<Login {...props} user={this.state.user} handleLogin={this.handleLogin} />)} />
         </Switch>
       </Router>
     );

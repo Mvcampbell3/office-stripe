@@ -27,6 +27,10 @@ header {
   cursor: pointer;
 }
 
+.header-link {
+  color: #003975;
+}
+
 .header-title {
   font-size: 22px;
   padding-bottom: 10px;

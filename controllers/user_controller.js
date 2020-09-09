@@ -13,10 +13,10 @@ module.exports = {
       })
   },
   createUser: (req, res) => {
-    const { email, username, password } = req.body;
+    const { email, password } = req.body;
     bcrypt.hash(password, 15)
       .then(hash => {
-        db.User.create({ email, username, password: hash })
+        db.User.create({ email, password: hash })
           .then(user => {
             res.status(201).json(user);
           })

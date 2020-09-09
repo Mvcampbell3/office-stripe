@@ -17,7 +17,7 @@ const Header = (props) => {
         {props.user ? < li >
           <i className="fas fa-user-tie"></i>
         </li> : <li>
-            <i className="fas fa-sign-in-alt"></i>
+            <Link to='/login' className='header-link'><i className="fas fa-sign-in-alt"></i></Link>
           </li>}
 
       </ul>
