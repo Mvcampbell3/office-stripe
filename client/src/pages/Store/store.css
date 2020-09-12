@@ -25,7 +25,11 @@
 }
 
 .products-holder {
-  width: 90%;
+  width: fit-content;
   margin: 0 auto;
   padding: 40px 0 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  justify-items: center;
+  gap: 100px;
 }
