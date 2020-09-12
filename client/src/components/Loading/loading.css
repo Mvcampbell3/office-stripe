@@ -1,0 +1,128 @@
+.loading-container {
+  min-height: calc(100vh - 160px);
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-1 {
+  width: 200px;
+  height: 200px;
+  background-color: #003975;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px 15px rgba(51, 51, 51, 0.267);
+  position: relative;
+  top: -50px;
+  animation: load1 forwards 1s infinite linear;
+}
+
+@keyframes load1 {
+  0% {
+    transform: rotateZ(0deg);
+    box-shadow: 0px 0px 15px 15px rgba(51, 51, 51, 0.267);
+  }
+  50% {
+    transform: rotateZ(180deg);
+    box-shadow: 0px 0px 0px 0px rgba(51, 51, 51, 0.267);
+  }
+  100% {
+    transform: rotateZ(360deg);
+    box-shadow: 0px 0px 15px 15px rgba(51, 51, 51, 0.267);
+  }
+}
+
+.loading {
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+}
+
+.dot {
+  position: relative;
+  width: 2em;
+  height: 2em;
+  margin: 0.8em;
+  border-radius: 50%;
+}
+
+.dot1 {
+  background-color: #006adb;
+}
+
+.dot1::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  animation: wave 1.5s 0.2s ease-out infinite;
+}
+
+.dot2 {
+  background-color: #0051a8;
+}
+
+.dot2::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  animation: wave 1.5s 0.4s ease-out infinite;
+}
+
+.dot3 {
+  background-color: #003975;
+}
+
+.dot3::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  animation: wave 1.5s 0.6s ease-out infinite;
+}
+
+.dot4 {
+  background-color: #002f61;
+}
+
+.dot4::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  animation: wave 1.5s 0.8s ease-out infinite;
+}
+
+.dot5 {
+  background-color: #002750;
+}
+
+.dot5::before {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  animation: wave 1.5s 1s ease-out infinite;
+}
+
+@keyframes wave {
+  50%,
+  75% {
+    transform: scale(2.5);
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+}

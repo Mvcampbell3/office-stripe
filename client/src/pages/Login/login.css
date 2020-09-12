@@ -1,0 +1,16 @@
+.login-form {
+  width: 30vw;
+  min-width: 300px;
+  margin: 0 auto;
+}
+
+.login-title {
+  text-align: center;
+  font-size: 30px;
+  color: #003975;
+}
+
+.main-login {
+  border-top: 43px #003975 solid;
+  padding-top: 2em;
+}

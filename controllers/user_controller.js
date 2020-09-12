@@ -18,7 +18,8 @@ module.exports = {
       .then(hash => {
         db.User.create({ email, password: hash })
           .then(user => {
-            res.status(201).json(user);
+            console.log(user)
+            return jwtSign(req, res, user);
           })
           .catch(err => {
             res.status(422).json(err)

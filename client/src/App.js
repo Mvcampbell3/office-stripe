@@ -17,7 +17,9 @@ class App extends Component {
     current_cart: [],
     display_store: 'all',
     products: [],
-    loading: false
+    loading: false,
+    error: false,
+    error_messages: []
   }
 
   componentDidMount() {
@@ -40,12 +42,21 @@ class App extends Component {
     })
   }
 
-  loginUser = () => {
-    API.loginUser('mvcampbell3@gmail.com', '12341234')
+  loginUser = (email, password) => {
+    API.loginUser(email, password)
       .then(response => {
         console.log(response.data);
-        if (response.data.token) {
-          localStorage.setItem('ofsp-token', JSON.stringify(response.data.token))
+        const { token, id, loggedIn } = response.data;
+        console.log(id, loggedIn);
+        if (loggedIn) {
+          this.setState(prevState => {
+            prevState.user = true;
+            prevState.id = id;
+            return prevState
+          }, () => {
+            localStorage.setItem('ofsp-token', JSON.stringify(token))
+
+          })
         }
       })
       .catch(err => {
@@ -53,18 +64,30 @@ class App extends Component {
       })
   }
 
-  handleLogin = (email, password) => {
-    API.loginUser(email, password)
+  signupUser = (email, password) => {
+    API.signupUser(email, password)
       .then(response => {
         console.log(response.data);
-        if (response.data.token) {
-          localStorage.setItem('ofsp-token', JSON.stringify(response.data.token));
-          this.setState({ ...this.state, user: true, id: response.data.id })
+        const { token, id, loggedIn } = response.data;
+        console.log(id, loggedIn);
+        if (loggedIn) {
+          this.setState(prevState => {
+            prevState.user = true;
+            prevState.id = id;
+            return prevState
+          }, () => {
+            localStorage.setItem('ofsp-token', JSON.stringify(token))
+
+          })
         }
       })
       .catch(err => {
         console.log(err);
       })
+  }
+
+  handleLogin = (email, password, actionLogin) => {
+    actionLogin ? this.loginUser(email, password) : this.signupUser(email, password);
   }
 
   scrollTop = () => {
@@ -143,12 +166,45 @@ class App extends Component {
 
   }
 
+  setErrors = (messages) => {
+    this.setState(prevState => {
+      prevState.error = true;
+      prevState.error_messages = messages;
+    })
+  }
+
+  clearErrors = () => {
+    this.setState(prevState => {
+      prevState.error = false;
+      prevState.error_messages = [];
+      return prevState;
+    })
+  }
+
+
   render() {
     return (
       <Router>
         <Switch>
-          <Route exact path='/' render={props => (<Landing {...props} user={this.state.user} loading={this.state.loading} loginUser={this.loginUser} checkAuth={this.checkAuth} />)} />
-          <Route exact path='/new' render={props => (<Testing {...props} user={this.state.user} />)} />
+          <Route exact path='/' render={props => (
+            <Landing {...props}
+              user={this.state.user}
+              loading={this.state.loading}
+              loginUser={this.loginUser}
+              checkAuth={this.checkAuth}
+              error={this.state.error}
+              error_messages={this.state.error_messages}
+            />
+          )} />
+
+          <Route exact path='/new' render={props => (
+            <Testing {...props}
+              user={this.state.user}
+              error={this.state.error}
+              error_messages={this.state.error_messages}
+            />
+          )} />
+
           <Route exact path='/store' render={props => (
             <Store {...props}
               user={this.state.user}
@@ -157,10 +213,28 @@ class App extends Component {
               display_store={this.state.display_store}
               setDisplayStore={this.setDisplayStore}
               getAllProducts={this.getAllProducts}
+              error={this.state.error}
+              error_messages={this.state.error_messages}
             />
           )} />
-          <Route exact path='/login' render={props => (<Login {...props} user={this.state.user} handleLogin={this.handleLogin} />)} />
-          <Route exact path='/profile' render={props => (<Profile {...props} user={this.state.user} logout={this.logout} />)} />
+
+          <Route exact path='/login' render={props => (
+            <Login {...props}
+              user={this.state.user}
+              handleLogin={this.handleLogin}
+              error={this.state.error}
+              error_messages={this.state.error_messages}
+            />
+          )} />
+
+          <Route exact path='/profile' render={props => (
+            <Profile {...props}
+              user={this.state.user}
+              logout={this.logout}
+              error={this.state.error}
+              error_messages={this.state.error_messages}
+            />
+          )} />
         </Switch>
       </Router>
     );
