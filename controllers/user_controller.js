@@ -48,7 +48,7 @@ module.exports = {
               res.staus.json(500)
             })
         } else {
-          res.status(404).json({ user: false })
+          res.status(404).send('no user in db')
         }
       })
   },

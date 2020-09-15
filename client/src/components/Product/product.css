@@ -1,17 +1,17 @@
-.product-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 .product {
   width: 100%;
   border-bottom: 1px #eee solid;
   border-top: 1px #eee solid;
   height: 100%;
   min-height: 400px;
-  padding: 3em 0;
+  padding: 2em 1em;
+}
+
+.product-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .product-label {
@@ -108,4 +108,9 @@
 
 .my-number-input:focus {
   outline: 0;
+}
+
+.action-area {
+  width: fit-content;
+  margin: 0 auto;
 }

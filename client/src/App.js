@@ -57,10 +57,17 @@ class App extends Component {
             localStorage.setItem('ofsp-token', JSON.stringify(token))
 
           })
+        } else {
+          console.log(response.data)
+          if (!response.data) {
+            this.setErrors([{ content: 'Incorrect email an/or password' }])
+          }
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response);
+        console.log(err.response.status)
+        this.setErrors([{ content: 'Incorrect email an/or password' }])
       })
   }
 
@@ -170,6 +177,7 @@ class App extends Component {
     this.setState(prevState => {
       prevState.error = true;
       prevState.error_messages = messages;
+      return prevState;
     })
   }
 
@@ -194,6 +202,8 @@ class App extends Component {
               checkAuth={this.checkAuth}
               error={this.state.error}
               error_messages={this.state.error_messages}
+              setErrors={this.setErrors}
+              clearErrors={this.clearErrors}
             />
           )} />
 
@@ -202,6 +212,8 @@ class App extends Component {
               user={this.state.user}
               error={this.state.error}
               error_messages={this.state.error_messages}
+              setErrors={this.setErrors}
+              clearErrors={this.clearErrors}
             />
           )} />
 
@@ -215,6 +227,8 @@ class App extends Component {
               getAllProducts={this.getAllProducts}
               error={this.state.error}
               error_messages={this.state.error_messages}
+              setErrors={this.setErrors}
+              clearErrors={this.clearErrors}
             />
           )} />
 
@@ -224,6 +238,8 @@ class App extends Component {
               handleLogin={this.handleLogin}
               error={this.state.error}
               error_messages={this.state.error_messages}
+              setErrors={this.setErrors}
+              clearErrors={this.clearErrors}
             />
           )} />
 
@@ -233,6 +249,8 @@ class App extends Component {
               logout={this.logout}
               error={this.state.error}
               error_messages={this.state.error_messages}
+              setErrors={this.setErrors}
+              clearErrors={this.clearErrors}
             />
           )} />
         </Switch>

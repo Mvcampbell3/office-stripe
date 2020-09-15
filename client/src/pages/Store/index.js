@@ -3,6 +3,7 @@ import './store.css'
 import Header from '../../components/Header';
 import Product from '../../components/Product';
 import Loading from '../../components/Loading';
+import ErrorDisplay from '../../components/ErrorDisplay';
 
 const Store = (props) => {
 
@@ -18,6 +19,7 @@ const Store = (props) => {
   return (
     <div className="container-store">
       <Header user={props.user} />
+      {props.error ? <ErrorDisplay error={props.error} messages={props.error_messages} clearErrors={props.clearErrors} /> : null}
       <div className="main-store">
         <div className="store-nav">
           <div className={props.display_store === 'all' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("all")}>All</div>
@@ -34,6 +36,7 @@ const Store = (props) => {
             })}
           </div>}
       </div>
+
 
     </div>
 

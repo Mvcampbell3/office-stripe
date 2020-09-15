@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './login.css';
 import Header from '../../components/Header';
+import ErrorDisplay from '../../components/ErrorDisplay';
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
@@ -15,6 +16,7 @@ const Login = (props) => {
   return (
     <div className="container-login">
       <Header user={props.user} />
+      {props.error ? <ErrorDisplay error={props.error} messages={props.error_messages} clearErrors={props.clearErrors} /> : null}
       <div className="main-login">
         <form className='login-form' onSubmit={(e) => {
           e.preventDefault();
