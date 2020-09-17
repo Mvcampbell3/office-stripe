@@ -23,11 +23,8 @@ const Store = (props) => {
       <div className="main-store">
         <div className="store-nav">
           <div className={props.display_store === 'all' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("all")}>All</div>
-          <div className={props.display_store === 'machines' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("machines")}>Machines</div>
-          <div className={props.display_store === 'flair' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("flair")}>Flair</div>
-          <div className={props.display_store === 'movies' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("movies")}>Movies</div>
-          <div className={props.display_store === 'cars' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("cars")}>Cars</div>
-          <div className={props.display_store === 'games' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("games")}>Games</div>
+          <div className={props.display_store === 'rocket' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("rocket")}>Rockets</div>
+          <div className={props.display_store === 'payload' ? 'store-nav-item tech selected' : 'store-nav-item tech'} onClick={() => props.setDisplayStore("payload")}>Payloads</div>
         </div>
         {props.loading ? <Loading /> :
           <div className='products-holder'>

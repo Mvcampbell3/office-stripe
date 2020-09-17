@@ -14,6 +14,7 @@ module.exports = {
 
   },
   getTypeProduct: (req, res) => {
+    console.log(req.params.type)
     db.Product.find({ type: req.params.type })
       .then(products => res.status(200).json(products))
       .catch(err => {

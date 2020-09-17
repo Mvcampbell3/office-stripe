@@ -16,6 +16,14 @@ const ProductSchema = new Schema({
     type: String,
     required: true
   },
+  mission: {
+    type: String,
+    required: true
+  },
+  manned: {
+    type: Boolean,
+    required: true
+  },
   img_path: {
     type: String,
     required: true
